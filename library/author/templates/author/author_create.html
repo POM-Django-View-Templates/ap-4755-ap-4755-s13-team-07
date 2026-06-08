@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create author</title>
+</head>
+<body>
+    <h1>Create author</h1>
+
+    <a href="{% url 'author_list' %}">Back to authors</a>
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Surname:</label><br>
+        <input type="text" name="surname" required><br><br>
+
+        <label>Patronymic:</label><br>
+        <input type="text" name="patronymic" required><br><br>
+
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

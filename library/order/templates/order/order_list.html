@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+</head>
+<body>
+    <h1>All Orders</h1>
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <ul>
+        {% for order in orders %}
+            <li>
+                Order {{ order.id }} |
+                Book: {{ order.book.name }} |
+                User: {{ order.user.email }} |
+                Created: {{ order.created_at }} |
+                End: {{ order.end_at }} |
+                Planned end: {{ order.plated_end_at }}
+
+                {% if not order.end_at %}
+                    <a href="{% url 'order_close' order.id %}">Close order</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No orders</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
