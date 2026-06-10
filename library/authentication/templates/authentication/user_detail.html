@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User detail</title>
+</head>
+<body>
+    <h1>User detail</h1>
+
+    <a href="{% url 'user_list' %}">Back to users</a>
+
+    <p><b>ID:</b> {{ user_obj.id }}</p>
+    <p><b>Email:</b> {{ user_obj.email }}</p>
+    <p><b>First name:</b> {{ user_obj.first_name }}</p>
+    <p><b>Middle name:</b> {{ user_obj.middle_name }}</p>
+    <p><b>Last name:</b> {{ user_obj.last_name }}</p>
+    <p><b>Role:</b> {{ user_obj.get_role_name }}</p>
+    <p><b>Active:</b> {{ user_obj.is_active }}</p>
+
+    <a href="{% url 'books_by_user' user_obj.id %}">
+        Show books by this user
+    </a>
+</body>
+</html>

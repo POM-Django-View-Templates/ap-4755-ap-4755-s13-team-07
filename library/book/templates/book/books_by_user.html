@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books by user</title>
+</head>
+<body>
+    <h1>Books by user</h1>
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <p>User: {{ selected_user.email }}</p>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.id %}">
+                    {{ book.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No books for this user</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

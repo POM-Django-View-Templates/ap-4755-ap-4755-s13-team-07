@@ -64,3 +64,23 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
+
+
+def user_list(request):
+    if not request.user.is_authenticated or request.user.role != 1:
+        return redirect("home")
+
+    users = CustomUser.get_all()
+    return render(request, "authentication/user_list.html", {"users": users})
+
+
+def user_detail(request, user_id):
+    if not request.user.is_authenticated or request.user.role != 1:
+        return redirect("home")
+
+    user_obj = CustomUser.get_by_id(user_id)
+
+    if user_obj is None:
+        return redirect("user_list")
+
+    return render(request, "authentication/user_detail.html", {"user_obj": user_obj})

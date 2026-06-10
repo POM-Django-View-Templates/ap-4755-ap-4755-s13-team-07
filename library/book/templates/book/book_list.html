@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books</title>
+</head>
+<body>
+    <h1>Books</h1>
+
+    <a href="{% url 'home' %}">Home</a>
+
+    <h3>Filter books</h3>
+
+    <form method="get">
+        <label>Title:</label>
+        <input type="text" name="title">
+
+        <label>Author:</label>
+        <input type="text" name="author">
+
+        <button type="submit">Filter</button>
+    </form>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'book_detail' book.id %}">
+                    {{ book.name }}
+                </a>
+                | Count: {{ book.count }}
+            </li>
+        {% empty %}
+            <li>No books</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
